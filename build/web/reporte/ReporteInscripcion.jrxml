@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporte" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="96e0c633-3727-4dbb-856d-4d9993b1b829">
+	<property name="ireport.zoom" value="1.607691607500001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="expediente" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="anio" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ciclo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select u.codigo, c.codigo_carrera,e.expediente, c.carrera,u.nombres, 
+u.apellidos, i.id_inscripcion, m.materia, m.uv, g.grupo, g.horario, g.aula, i.anio, ci.ciclo
+from inscripciones as i
+inner join estudiantes as e on i.expediente = e.expediente 
+inner join materias as m on i.codigo_materia = m.codigo_materia 
+inner join grupos as g on i.id_grupo = g.id_grupo 
+inner join usuarios as u on e.idusuario = u.id 
+inner join carreras as c on e.id_carrera = c.id_carrera
+inner join ciclos as ci on ci.id_ciclo=i.id_ciclo
+where i.anio=$P{anio} 
+and ci.ciclo=$P{ciclo}
+and i.expediente =$P{expediente} ;]]>
+	</queryString>
+	<field name="codigo" class="java.lang.String"/>
+	<field name="codigo_carrera" class="java.lang.String"/>
+	<field name="expediente" class="java.lang.Integer"/>
+	<field name="carrera" class="java.lang.String"/>
+	<field name="nombres" class="java.lang.String"/>
+	<field name="apellidos" class="java.lang.String"/>
+	<field name="id_inscripcion" class="java.lang.Integer"/>
+	<field name="materia" class="java.lang.String"/>
+	<field name="uv" class="java.lang.String"/>
+	<field name="grupo" class="java.lang.String"/>
+	<field name="horario" class="java.lang.String"/>
+	<field name="aula" class="java.lang.String"/>
+	<field name="anio" class="java.lang.String"/>
+	<field name="ciclo" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="16" width="555" height="26" uuid="eb072b4c-a8e5-4885-b43f-a45de88e7fcb"/>
+				<textElement textAlignment="Center">
+					<font fontName="Gill Sans MT" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COMPROBANTE DE INSCRIPCIÓN]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="63" splitType="Stretch">
+			<rectangle>
+				<reportElement x="-1" y="0" width="555" height="62" uuid="0f5de9f5-ae0d-4f3d-b86f-8366eb00794e"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="2" width="88" height="20" uuid="722d8886-e734-4ba3-8472-691d753ed42b"/>
+				<textElement>
+					<font fontName="Gill Sans MT" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ EXPEDIENTE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="22" width="78" height="20" uuid="459686eb-61d7-46ea-95d7-e1b4187caed0"/>
+				<textElement>
+					<font fontName="Gill Sans MT" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ ALUMNO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-1" y="42" width="78" height="20" uuid="c1774516-0728-4e0b-9f9a-530da37da3a8"/>
+				<textElement>
+					<font fontName="Gill Sans MT" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ CARRERA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="88" y="2" width="59" height="20" uuid="63cd4666-bfeb-4cf6-bad0-082e5dcba66d"/>
+				<textElement>
+					<font fontName="Gill Sans MT" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{expediente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="78" y="22" width="69" height="20" uuid="d91093bc-c2fc-4241-82d0-ecce212f6a33"/>
+				<textElement>
+					<font fontName="Gill Sans MT" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="161" y="22" width="122" height="20" uuid="d468cf40-b95d-41b0-aeaa-e4de21c1f96a"/>
+				<textElement>
+					<font fontName="Gill Sans MT" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="42" width="121" height="20" uuid="e7dcff54-9365-49e2-ab3a-a382af462e23"/>
+				<textElement>
+					<font fontName="Gill Sans MT" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{carrera}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="147" y="22" width="14" height="20" uuid="fb8eea4e-527f-4b8b-83a9-78003598be48"/>
+				<textElement textAlignment="Center">
+					<font fontName="Gill Sans MT" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[,]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="78" y="42" width="21" height="20" uuid="317687dd-79b0-494f-9a43-2f5bb7bccb35"/>
+				<textElement>
+					<font fontName="Gill Sans MT" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo_carrera}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="99" y="42" width="11" height="20" uuid="88670694-d886-4be7-9d1a-5a5f2b813aa1"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Gill Sans MT" size="13" isBold="true" isStrikeThrough="true"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="2" width="64" height="20" uuid="b6807ad3-5e63-4866-9a60-4c7541c50f3b"/>
+				<textElement>
+					<font fontName="Gill Sans MT" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CÓDIGO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="347" y="2" width="100" height="20" uuid="67658b93-489f-43d2-8348-b95ada1d0fee"/>
+				<textElement>
+					<font fontName="Gill Sans MT" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="283" y="42" width="70" height="20" uuid="8e17dc32-6752-4717-9552-7c53d2d93707"/>
+				<textElement>
+					<font fontName="Gill Sans MT" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CICLO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="42" width="70" height="20" uuid="79b4d280-ec68-4281-b53e-cf80a5181198"/>
+				<textElement>
+					<font fontName="Gill Sans MT" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AÑO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="480" y="42" width="74" height="20" uuid="310e99b3-d5c5-4215-af41-a9a6ba946ef1"/>
+				<textFieldExpression><![CDATA[$F{anio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="354" y="42" width="56" height="20" uuid="6c50c24a-0648-4c0f-adc3-a3ba96c9a3ea"/>
+				<textFieldExpression><![CDATA[$F{ciclo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="46" splitType="Stretch">
+			<staticText>
+				<reportElement x="-1" y="17" width="55" height="29" uuid="34c61083-76f1-4156-a624-b9643b60d4cb"/>
+				<textElement>
+					<font fontName="Gill Sans MT" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID INS.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="77" y="17" width="70" height="29" uuid="9aa76316-805d-4316-89c2-1972d39f2cd8"/>
+				<textElement>
+					<font fontName="Gill Sans MT" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MATERIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="512" y="17" width="42" height="29" uuid="b4e90ad6-5dbd-494f-b9df-4c7261448ad9"/>
+				<textElement>
+					<font fontName="Gill Sans MT" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AULA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="36" width="554" height="1" uuid="7d1da43f-2213-4955-84e8-a97a92da3a92"/>
+			</line>
+			<staticText>
+				<reportElement x="267" y="17" width="32" height="29" uuid="e32420ed-1efb-416a-8e00-160a53c917a1"/>
+				<textElement>
+					<font fontName="Gill Sans MT" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UV]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="318" y="17" width="55" height="29" uuid="249b5658-96e4-4388-a1b6-d7ace31e096b"/>
+				<textElement>
+					<font fontName="Gill Sans MT" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GRUPO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="17" width="88" height="29" uuid="f3dd9b35-7434-44c3-88ac-9f00ddee7579"/>
+				<textElement>
+					<font fontName="Gill Sans MT" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HORARIO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="37" height="20" uuid="873396ec-b123-4202-95e4-5dc013c31dc0"/>
+				<textElement>
+					<font fontName="Gill Sans MT" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_inscripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="37" y="3" width="230" height="20" uuid="dcc074c5-46bd-4028-8fd5-b2dbce9dbe8b"/>
+				<textElement>
+					<font fontName="Gill Sans MT" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{materia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="318" y="0" width="55" height="20" uuid="397c4c39-9627-448a-a5ae-5b06dba08f53"/>
+				<textElement>
+					<font fontName="Gill Sans MT" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grupo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="3" width="36" height="20" uuid="bec5c96f-ea34-4988-b992-6ba46d8d2861"/>
+				<textElement>
+					<font fontName="Gill Sans MT" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{uv}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="392" y="3" width="107" height="20" uuid="aa58d044-4a82-4c34-af05-f8284cfdae45"/>
+				<textElement>
+					<font fontName="Gill Sans MT" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{horario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="512" y="3" width="48" height="20" uuid="24c4d0b5-7a7c-4211-8df1-90a977e72c1c"/>
+				<textElement>
+					<font fontName="Gill Sans MT" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aula}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="4" width="54" height="20" uuid="4e47e912-b9fe-4b75-a836-c3ee51c0c7c1"/>
+				<textElement textAlignment="Right">
+					<font fontName="Gill Sans MT" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pág "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="54" y="4" width="40" height="20" uuid="a419d631-af03-4b56-9ef3-4f76d950c42c"/>
+				<textElement>
+					<font fontName="Gill Sans MT" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="454" y="4" width="100" height="20" uuid="b471dc41-f68f-4862-85c6-336f9886ce13"/>
+				<textElement>
+					<font fontName="Gill Sans MT" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
